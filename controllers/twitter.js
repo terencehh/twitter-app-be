@@ -14,7 +14,6 @@ const client = new Twitter({
 });
 
 const getAllLists = () => (req, res) => {
-  console.log('api 1 called')
   var username = String(req.params.twitterId);
   client.get('lists/list', {screen_name: username}, function(error, tweets, response) {
         if (!error) {
@@ -26,7 +25,6 @@ const getAllLists = () => (req, res) => {
 }
 
 const getAllListMembers = () => (req, res) => {
-  console.log('api 2 called')
   var listId = String(req.params.listId);
   client.get('lists/members', {list_id: listId, count: 50}, function(error, tweets, response) {
         if (!error) {
@@ -41,7 +39,6 @@ const getAllListMembers = () => (req, res) => {
 
 const getRecentFollowers = () => (req, res) => {
   var id = req.params.twitterId;
-  console.log('api 3 called', id);
   client.get('friends/list', {user_id: id, count: 50}, function(error, tweets, response) {
     if (!error) {
       res.json(tweets);
@@ -52,35 +49,8 @@ const getRecentFollowers = () => (req, res) => {
   });
 }
 
-const testApi = () => {
-  // client.get('lists/list', {screen_name: 'tereykiller'}, function(error, tweets, response) {
-  //   if (!error) {
-  //     console.log(tweets)
-  //   } else {
-  //     console.log(error);
-  //   }
-  // });
-
-  // client.get('lists/members', {list_id: '1398235755554635776'}, function(error, tweets, response) {
-  //   if (!error) {
-  //     console.log(tweets);
-  //       } else {
-  //     console.log(error);
-  //   }
-  // });
-
-  // client.get('friends/list', {screen_name: 'bloodgoodBTC', count: 20}, function(error, tweets, response) {
-  //   if (!error) {
-  //     console.log(tweets);
-  //   } else {
-  //     console.log(error);
-  //   }
-  // });
-}
-
 module.exports = {
   getAllLists,
   getAllListMembers,
   getRecentFollowers,
-  testApi
 };

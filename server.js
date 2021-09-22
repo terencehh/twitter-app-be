@@ -16,7 +16,6 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("App is working!");
-  console.log('received request!')
 });
 
 //Twitter API  --> GET Request --> Success/Fail
